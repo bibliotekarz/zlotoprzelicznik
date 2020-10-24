@@ -1,0 +1,101 @@
+body {
+    font-family: Roboto, -apple-system, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    margin: .5rem;
+    padding: 1rem;
+    min-width: 370px;
+    background-image: url("img/tlo1.jpg");
+}
+
+.wstep {
+    display: block;
+    border-style: dashed;
+    border-radius: 1rem;
+    background: rgb(250, 250, 250, 0.6);
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
+    max-width: 800px;
+}
+
+h1.wstep {
+    text-align: center;
+    border-color: black;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: rgb(250, 250, 250, 0.6);
+}
+
+.opis {
+    font-weight: 400;
+}
+
+p {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+    clear: both;
+    color: #154d88;
+}
+
+footer {
+    display: block;
+}
+
+h3 {
+    line-height: 1.25;
+    font-weight: 600;
+    font-size: 1.25rem;
+    font-family: Segoe UI, SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+a,
+a:visited {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+.kontener {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+    border-style: double;
+    border-radius: 1rem;
+    background: rgb(250, 250, 250, 0.8);
+    margin: 0rem 1rem 1rem 0rem;
+    padding: 1rem;
+    max-width: 800px;
+}
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.wynik {
+    display: block;
+    border-style: dashed;
+    border-radius: 1rem;
+    background: rgb(250, 250, 250, 0.6);
+    margin-top: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 0rem 1rem 1rem 1rem;
+    max-width: 800px;
+}
+
+#zawartosczlota {
+    display: none;
+}

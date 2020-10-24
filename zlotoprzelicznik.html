@@ -1,0 +1,111 @@
+<html>
+
+<head>
+
+    <meta charset="UTF-8" />
+    <title>Złotoprzelicznik</title>
+    <meta name="description" content="Przelicznik wartości monetek" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- meta name="viewport" content="width=device-width, initial-scale=1" -->
+    <script src="script.js"></script>
+
+</head>
+
+<body>
+
+    <header class="wstep">
+        <h1>No cześć!</h1>
+        <p>Wartość monetki wyliczysz wypełniając pola formularza poniżej.</p>
+        <p>Domyślna wartość złota jest pobierana za pomocą API Narodowego Banku Polskiego ze strony http://api.nbp.pl/api/cenyzlota/today</p>
+    </header>
+    <main>
+
+
+        <div class="kontener">
+
+            <div>
+                <label for="uncja">Wybierz wagę złota <br>w uncjach:</label><br>
+                <select name="uncja" id="uncja" onclick="ukryjZawartosc()">
+                    <option value="0">Wybierz wagę</option>
+                    <option value="1">Full 1 oz.</option>
+                    <option value="0.5">Half 1/2 oz.</option>
+                    <option value="0.25">Quarter 1/4 oz.</option>
+                    <option value="0.1">Tenth 1/10 oz.</option>
+                </select>
+            </div>
+            <div>
+                <label for="gramzloto">Podaj wagę czystego złota <br>w gramach:</label><br>
+                <input type="text" id="gramzloto" name="gramzloto" onclick="ukryjZawartosc()"> g.
+            </div>
+            <div>
+                <label for="gramproba">Podaj wagę monety w gramach:<br><small>(podaj próbę złota poniżej)</small></label><br>
+                <input type="text" id="gramproba" name="gramproba" onclick="pokazZawartosc()"> g.
+            </div>
+        </div>
+
+        <div class="kontener" id="zawartosczlota">
+            <div>
+                <label for="karat">Wybierz liczbę karatów:</label><br>
+                <select name="karat" id="karat" onchange="jakosc('karat')">
+                <option value="0" >Wybierz ilość karatów</option>
+                <option value="999">24 karaty</option>
+                <option value="958">23 karaty</option>
+                <option value="916">22 karaty</option>
+                <option value="750">18 karaty</option>
+                <option value="585">14 karaty</option>
+                <option value="500">12 karaty</option>
+                <option value="417">10 karaty</option>
+                <option value="375">9 karaty</option>
+                <option value="333">8 karaty</option>
+                </select>
+            </div>
+            <div>
+                <label for="gum">Wybierz próbę zgodnie z <a href="http://bip.oup.warszawa.gum.gov.pl/download/18/1217/RozpMGwsmetaliszlachetnych.pdf" target="_new" alt="Rozporządzenie Ministra Gospodarki w sprawie wyrobów z metali szlachetnych">GUM</a>:</label><br>
+
+                <select name="gum" id="gum" onchange="jakosc('gum')">
+                <option value="0">Wybierz próbę</option>
+                <option value="999">Próba 0</option>
+                <option value="958">Próba 1</option>
+                <option value="750">Próba 2</option>
+                <option value="585">Próba 3</option>
+                <option value="500">Próba 4</option>
+                <option value="375">Próba 5</option>
+                <option value="333">Próba 6</option>
+                </select>
+            </div>
+            <div>
+                <label for="proba">Podaj próbę w częściach tysięcznych:</label><br>
+                <input type="text" id="proba" name="proba" onchange="jakosc('proba')">
+            </div>
+        </div>
+
+        <div class="kontener">
+            <div>
+                <label for="cena_uncja">Wprowadź cenę za uncję złota:</label><br>
+                <input type="text" id="cena_uncja" name="cena_uncja" value="8000"> PLN.
+            </div>
+            <div>
+                <label for="cena_gram">Wprowadź cenę za gram złota:</label><br>
+                <input type="text" id="cena_gram" name="cena_gram" value="240"> PLN.
+            </div>
+        </div>
+        <div class="wynik">
+            <div onclick="cenaZlota()">
+                <h2>Twoja monetka jest warta: </h2>
+                <h1 id="wartosc"> xxxx z js</h1>
+                <h3 id="brak">ggg</h3>
+            </div>
+
+        </div>
+    </main>
+    <footer class="footer">
+        <p><a href="https://arek.bibliotekarz.com">Niedoszły Bibliotekarz</a> | 2020</p>
+    </footer>
+
+</body>
+
+</html>
+
+Złoto 24-karatowe – próba 0 (teoretycznie, gdyż w rzeczywistości w ten sposób określa się złoto w próbie 999,9) - 99,9% czystego złota Złoto 23-karatowe – próba 958 - próba 1 - 95,8% czystego złota Złoto 22-karatowe – próba 916 - - 91,6% czystego złota
+Złoto 18-karatowe – próba 750 - próba 2 - 75,0% czystego złota Złoto 14-karatowe – próba 585 - próba 3 - 58,5% czystego złota Złoto 12-karatowe – próba 500 - próba 4 - 50,0% czystego złota Złoto 10-karatowe – próba 417 - - 41,7% czystego złota Złoto 9-karatowe
+– próba 375 - próba 5 - 37,5% czystego złota Złoto 8-karatowe – próba 333 - próba 6 - 33,3% czystego złota
