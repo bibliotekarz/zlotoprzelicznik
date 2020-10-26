@@ -31,6 +31,9 @@ function pokazZawartosc() {
     var pokaz = document.getElementById("zawartosczlota");
     pokaz.style.display = "flex";
     pokaz.style.backgroundColor = "silver";
+    var gramz;
+gramp = document.getElementById("gramproba").value;
+console.log("próbogram " + gramp);
 }
 
 function ukryjZawartosc() {
@@ -47,4 +50,23 @@ function cenaZlota() {
 
     document.getElementById("brak").innerHTML = "duda";
 }
+
+function gramzlota() {
+var gramz;
+gramz = document.getElementById("gramzloto").value;
+console.log("złotogram " + gramz);
+}
+var aa;
+fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
+    .then(response => response.json())
+    .then(response => {
+        console.log(response);
+            })
+    .then(response => {
+    aa = response;
+    console.log("aa[0] " + typeof(aa));
+    })
+
+    
+
 // :TODO: złączyć w jedną funkcję ukryj pokaż i dodać od ręki przeliczanie w niej jak się uda

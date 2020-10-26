@@ -35,19 +35,19 @@
             </div>
             <div>
                 <label for="gramzloto">Podaj wagę czystego złota <br>w gramach:</label><br>
-                <input type="text" id="gramzloto" name="gramzloto" onclick="ukryjZawartosc()"> g.
+                <input type="number" step="0.01" id="gramzloto" name="gramzloto" onclick="ukryjZawartosc()" onchange="gramzlota()"> g.
             </div>
             <div>
                 <label for="gramproba">Podaj wagę monety w gramach:<br><small>(podaj próbę złota poniżej)</small></label><br>
-                <input type="text" id="gramproba" name="gramproba" onclick="pokazZawartosc()"> g.
+                <input type="number" step="0.01" id="gramproba" name="gramproba" onchange="pokazZawartosc()"> g.
             </div>
         </div>
-
+        
         <div class="kontener" id="zawartosczlota">
             <div>
-                <label for="karat">Wybierz liczbę karatów:</label><br>
+                <label for="karat">Wybierz liczbę <br>karatów złota:</label><br>
                 <select name="karat" id="karat" onchange="jakosc('karat')">
-                <option value="0" >Wybierz ilość karatów</option>
+                <option value="0" >Ilość karatów</option>
                 <option value="999">24 karaty</option>
                 <option value="958">23 karaty</option>
                 <option value="916">22 karaty</option>
@@ -60,8 +60,7 @@
                 </select>
             </div>
             <div>
-                <label for="gum">Wybierz próbę zgodnie z <a href="http://bip.oup.warszawa.gum.gov.pl/download/18/1217/RozpMGwsmetaliszlachetnych.pdf" target="_new" alt="Rozporządzenie Ministra Gospodarki w sprawie wyrobów z metali szlachetnych">GUM</a>:</label><br>
-
+                <label for="gum">Wybierz próbę <br>zgodnie z <!-- a href="http://bip.oup.warszawa.gum.gov.pl/download/18/1217/RozpMGwsmetaliszlachetnych.pdf" target="_new" alt="Rozporządzenie Ministra Gospodarki w sprawie wyrobów z metali szlachetnych" -->GUM</a>:</label><br>
                 <select name="gum" id="gum" onchange="jakosc('gum')">
                 <option value="0">Wybierz próbę</option>
                 <option value="999">Próba 0</option>
@@ -74,19 +73,19 @@
                 </select>
             </div>
             <div>
-                <label for="proba">Podaj próbę w częściach tysięcznych:</label><br>
-                <input type="text" id="proba" name="proba" onchange="jakosc('proba')">
+                <label for="proba">Podaj wartość próby: <br> <small>w częściach tysięcznych</small></label><br>
+                <input type="number" min="1" max="1000" id="proba" name="proba" onchange="jakosc('proba')">
             </div>
         </div>
 
         <div class="kontener">
             <div>
                 <label for="cena_uncja">Wprowadź cenę za uncję złota:</label><br>
-                <input type="text" id="cena_uncja" name="cena_uncja" value="8000"> PLN.
+                <input type="number" step="any" id="cena_uncja" name="cena_uncja" value="8000"> PLN.
             </div>
             <div>
                 <label for="cena_gram">Wprowadź cenę za gram złota:</label><br>
-                <input type="text" id="cena_gram" name="cena_gram" value="240"> PLN.
+                <input type="number" step="0.01" id="cena_gram" name="cena_gram" value="240"> PLN.
             </div>
         </div>
         <div class="wynik">
