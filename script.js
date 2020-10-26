@@ -56,6 +56,7 @@ var gramz;
 gramz = document.getElementById("gramzloto").value;
 console.log("złotogram " + gramz);
 }
+
 var aa;
 fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
     .then(response => response.json())
