@@ -2,6 +2,10 @@ function jakosc(zmiana) {
     var k = document.getElementById("karat");
     var y = document.getElementById("proba");
     var g = document.getElementById("gum");
+    var cenagrama = document.getElementById("gramz");
+    console.log("varcenagrama "+ cenagrama.value);
+    var jakoscproby = document.getElementById("proba");
+    var gramstopu = document.getElementById("gramproba");
 
     console.log("duda " + zmiana)
 
@@ -21,6 +25,8 @@ function jakosc(zmiana) {
         case 'proba':
             k.value = 0;
             g.value = 0;
+            przelicz = cenagrama.value * jakoscproby.value * gramstopu.value;
+            console.log("przeliczenie " + przelicz);
             break;
         default:
             console.log("błąd case");
@@ -41,7 +47,7 @@ function ukryjZawartosc() {
     pokaz.style.display = "none";
 
 }
-
+/*
 function cenaZlota() {
     fetch("http://api.nbp.pl/api/cenyzlota/today?format=json")
         .then(resp => resp.json())
@@ -50,6 +56,7 @@ function cenaZlota() {
 
     document.getElementById("brak").innerHTML = "duda";
 }
+*/
 
 function gramzlota() {
 var gramz;
@@ -57,17 +64,11 @@ gramz = document.getElementById("gramzloto").value;
 console.log("złotogram " + gramz);
 }
 
-var aa;
+var aa = "";
 fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
     .then(response => response.json())
-    .then(response => {
-        console.log(response);
-            })
-    .then(response => {
-    aa = response;
-    console.log("aa[0] " + typeof(aa));
-    })
-
-    
+    .then(cenyzlota => aa = cenyzlota[0].cena);
+// :TODO: ubrać w funcję niech zwraca return https://github.github.io/fetch/
+    console.log("aa " + aa);
 
 // :TODO: złączyć w jedną funkcję ukryj pokaż i dodać od ręki przeliczanie w niej jak się uda
