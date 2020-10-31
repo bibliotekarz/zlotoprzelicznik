@@ -72,3 +72,36 @@ fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
     console.log("aa " + aa);
 
 // :TODO: złączyć w jedną funkcję ukryj pokaż i dodać od ręki przeliczanie w niej jak się uda
+
+function  foo()  {
+  alert('bar');
+console.log("z foo funkcji ");
+}
+
+
+document.getElementById("dudas").addEventListener("click", function(){
+    document.getElementById("dudas").innerHTML = "Hello____World!";
+    foo();
+  });
+
+  document.getElementById("uncja").addEventListener("click", function(){
+    ukryjZawartosc();
+  });
+
+/*
+  id="uncja" onclick="ukryjZawartosc()"
+  id="gramzloto" name="gramzloto" onclick="ukryjZawartosc()" onchange="gramzlota()
+  id="gramproba" name="gramproba" onchange="pokazZawartosc()
+  id="karat" onchange="jakosc('karat')
+  id="gum" onchange="jakosc('gum')
+  id="proba" name="proba" onchange="jakosc('proba')
+  id="cena_uncja" name="cena_uncja" value="8000"
+  id="cena_gram" name="cena_gram" value="240"
+  <div class="wynik">
+            <div onclick="cenaZlota()">
+                <h2>Twoja monetka jest warta: </h2>
+                <h1 id="wartosc"> xxxx z js</h1>
+                <h3 id="brak">ggg</h3>
+
+
+*/
