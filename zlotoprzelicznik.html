@@ -17,7 +17,6 @@
         <h1>No cześć!</h1>
         <p>Wartość monetki wyliczysz wypełniając pola formularza poniżej.</p>
         <p>Domyślna wartość złota jest pobierana za pomocą API Narodowego Banku Polskiego ze strony http://api.nbp.pl/api/cenyzlota/today</p>
-        <button id="dudas">trololo</button>
     </header>
 
     <main>
@@ -27,7 +26,7 @@
 
             <div>
                 <label for="uncja">Wybierz wagę złota <br>w uncjach:</label><br>
-                <select name="uncja" id="uncja" onclick="ukryjZawartosc()">
+                <select name="uncja" id="uncja">
                     <option value="0">Wybierz wagę</option>
                     <option value="1">Full 1 oz.</option>
                     <option value="0.5">Half 1/2 oz.</option>
@@ -37,18 +36,18 @@
             </div>
             <div>
                 <label for="gramzloto">Podaj wagę czystego złota <br>w gramach:</label><br>
-                <input type="number" step="0.01" id="gramzloto" name="gramzloto" onclick="ukryjZawartosc()" onchange="gramzlota()"> g.
+                <input type="number" min="0.01" step="0.01" id="gramzloto" name="gramzloto"> g.
             </div>
             <div>
                 <label for="gramproba">Podaj wagę monety w gramach:<br><small>(podaj próbę złota poniżej)</small></label><br>
-                <input type="number" step="0.01" id="gramproba" name="gramproba" onchange="pokazZawartosc()"> g.
+                <input type="number" min="0.01" step="0.01" id="gramproba" name="gramproba"> g.
             </div>
         </div>
         
         <div class="kontener" id="zawartosczlota">
             <div>
                 <label for="karat">Wybierz liczbę <br>karatów złota:</label><br>
-                <select name="karat" id="karat" onchange="jakosc('karat')">
+                <select name="karat" id="karat">
                 <option value="0" >Ilość karatów</option>
                 <option value="999">24 karaty</option>
                 <option value="958">23 karaty</option>
@@ -63,7 +62,7 @@
             </div>
             <div>
                 <label for="gum">Wybierz próbę <br>zgodnie z <!-- a href="http://bip.oup.warszawa.gum.gov.pl/download/18/1217/RozpMGwsmetaliszlachetnych.pdf" target="_new" alt="Rozporządzenie Ministra Gospodarki w sprawie wyrobów z metali szlachetnych" -->GUM</a>:</label><br>
-                <select name="gum" id="gum" onchange="jakosc('gum')">
+                <select name="gum" id="gum">
                 <option value="0">Wybierz próbę</option>
                 <option value="999">Próba 0</option>
                 <option value="958">Próba 1</option>
@@ -76,22 +75,22 @@
             </div>
             <div>
                 <label for="proba">Podaj wartość próby: <br> <small>w częściach tysięcznych</small></label><br>
-                <input type="number" min="1" max="1000" id="proba" name="proba" onchange="jakosc('proba')">
+                <input type="number" min="1" max="1000" id="proba" name="proba">
             </div>
         </div>
 
         <div class="kontener">
             <div>
                 <label for="cena_uncja">Wprowadź cenę za uncję złota:</label><br>
-                <input type="number" step="any" id="cena_uncja" name="cena_uncja" value="8000"> PLN.
+                <input type="number" min="0.01" step="any" id="cena_uncja" name="cena_uncja"> PLN.
             </div>
             <div>
-                <label for="cena_gram">Wprowadź cenę za gram złota:</label><br>
-                <input type="number" step="0.01" id="cena_gram" name="cena_gram" value="240"> PLN.
+                <label for="cena_gram">Wprowadź cenę za gram złota, <br><small>lub <span class="nbp" id="wez_nbp">pobierz ostatnią z NBP</span></small></label><br>
+                <input type="number" step="0.01" min="1" id="cena_gram" name="cena_gram"> PLN.
             </div>
         </div>
         <div class="wynik">
-            <div onclick="cenaZlota()">
+            <div id="pole_wynik" name="pole_wynik">
                 <h2>Twoja monetka jest warta: </h2>
                 <h1 id="wartosc"> xxxx z js</h1>
                 <h3 id="brak">ggg</h3>

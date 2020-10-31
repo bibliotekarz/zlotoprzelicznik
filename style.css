@@ -78,6 +78,10 @@ a:visited {
     padding: 1rem;
     max-width: 800px;
 }
+.nbp {
+    text-decoration: underline;
+    color: blue;
+}
 
 label {
     display: block;

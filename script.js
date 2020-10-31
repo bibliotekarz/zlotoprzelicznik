@@ -1,32 +1,32 @@
 function jakosc(zmiana) {
-    var k = document.getElementById("karat");
-    var y = document.getElementById("proba");
-    var g = document.getElementById("gum");
-    var cenagrama = document.getElementById("gramz");
-    console.log("varcenagrama "+ cenagrama.value);
+    var jakosc_karaty = document.getElementById("karat");
+    var jakosc_proba = document.getElementById("proba");
+    var jakosc_gum = document.getElementById("gum");
     var jakoscproby = document.getElementById("proba");
     var gramstopu = document.getElementById("gramproba");
 
-    console.log("duda " + zmiana)
+    console.log("duda8 " + zmiana)
 
     switch (zmiana) {
         case 'karat':
-            var a = k.value;
-            y.value = a;
-            g.value = 0;
-            console.log(a);
+            a = jakosc_karaty.value;
+            jakosc_proba.value = a;
+            jakosc_gum.value = 0;
+            console.log('karat ' + a);
             break;
         case 'gum':
-            var a = g.value;
-            y.value = a;
-            k.value = 0;
-            console.log(a);
+            a = jakosc_gum.value;
+            jakosc_proba.value = a;
+            jakosc_karaty.value = 0;
+            console.log('gum ' + a);
             break;
         case 'proba':
-            k.value = 0;
-            g.value = 0;
-            przelicz = cenagrama.value * jakoscproby.value * gramstopu.value;
-            console.log("przeliczenie " + przelicz);
+            a = jakosc_proba.value;
+            jakosc_karaty.value = 0;
+            jakosc_gum.value = 0;
+        //    przelicz = cenagrama.value * jakoscproby.value * gramstopu.value;
+        //    console.log("przeliczenie " + przelicz);
+            console.log('proba ' + a);        
             break;
         default:
             console.log("błąd case");
@@ -37,9 +37,6 @@ function pokazZawartosc() {
     var pokaz = document.getElementById("zawartosczlota");
     pokaz.style.display = "flex";
     pokaz.style.backgroundColor = "silver";
-    var gramz;
-gramp = document.getElementById("gramproba").value;
-console.log("próbogram " + gramp);
 }
 
 function ukryjZawartosc() {
@@ -47,16 +44,31 @@ function ukryjZawartosc() {
     pokaz.style.display = "none";
 
 }
-/*
-function cenaZlota() {
-    fetch("http://api.nbp.pl/api/cenyzlota/today?format=json")
-        .then(resp => resp.json())
-        .then(json => console.table(json))
-        .catch(err => console.log(err));
 
-    document.getElementById("brak").innerHTML = "duda";
+function aktualizujUncje () {
+    let uncjaPLN = "";
+    uncjaPLN = document.getElementById("cena_gram").value * 31,103;
+    uncjaPLN = Math.round(uncjaPLN * 100)/100;
+    document.getElementById("cena_uncja").value = uncjaPLN;
+    console.log("uncjaPLN " + uncjaPLN);
 }
-*/
+
+function aktualizujGramy () {
+    let gramPLN = "";
+    gramPLN = document.getElementById("cena_uncja").value / 31,103;
+    gramPLN = Math.round(gramPLN * 100)/100;
+    document.getElementById("cena_gram").value = gramPLN;
+    console.log("gramPLN " + gramPLN);
+}
+
+function cenaZlota() {
+    fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
+        .then(resp => resp.json())
+        .then(json => document.getElementById("cena_gram").value = json[0].cena)
+        .catch(err => console.log(err));
+    //    aktualizujUncje();
+}
+
 
 function gramzlota() {
 var gramz;
@@ -73,21 +85,20 @@ fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
 
 // :TODO: złączyć w jedną funkcję ukryj pokaż i dodać od ręki przeliczanie w niej jak się uda
 
-function  foo()  {
-  alert('bar');
-console.log("z foo funkcji ");
-}
-
-
-document.getElementById("dudas").addEventListener("click", function(){
-    document.getElementById("dudas").innerHTML = "Hello____World!";
-    foo();
-  });
-
-  document.getElementById("uncja").addEventListener("click", function(){
+document.getElementById("uncja").addEventListener('click', ukryjZawartosc);
+document.getElementById("gramzloto").addEventListener('click', function(){
     ukryjZawartosc();
+    gramzlota();
   });
 
+document.getElementById("gramproba").addEventListener('click', pokazZawartosc);
+document.getElementById("karat").addEventListener('change', jakosc('karat'));
+document.getElementById("gum").addEventListener('change', jakosc('gum'));
+document.getElementById("proba").addEventListener('change', jakosc('proba'));
+document.getElementById("wez_nbp").addEventListener('click', cenaZlota);
+document.getElementById("cena_gram").addEventListener('change', aktualizujUncje);
+document.getElementById("cena_uncja").addEventListener('change', aktualizujGramy);
+  
 /*
   id="uncja" onclick="ukryjZawartosc()"
   id="gramzloto" name="gramzloto" onclick="ukryjZawartosc()" onchange="gramzlota()
@@ -97,11 +108,6 @@ document.getElementById("dudas").addEventListener("click", function(){
   id="proba" name="proba" onchange="jakosc('proba')
   id="cena_uncja" name="cena_uncja" value="8000"
   id="cena_gram" name="cena_gram" value="240"
-  <div class="wynik">
-            <div onclick="cenaZlota()">
-                <h2>Twoja monetka jest warta: </h2>
-                <h1 id="wartosc"> xxxx z js</h1>
-                <h3 id="brak">ggg</h3>
-
+  id="pole_wymik" name="pole_wynik" onclick="cenaZlota()"
 
 */
