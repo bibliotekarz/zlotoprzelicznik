@@ -1,3 +1,4 @@
+//
 function jakosc(zmiana) {
     var jakosc_karaty = document.getElementById("karat");
     var jakosc_proba = document.getElementById("proba");
@@ -31,28 +32,34 @@ function jakosc(zmiana) {
         default:
             console.log("błąd case");
     }
+    policzCzysteZloto ();
 }
 
+//
 function pokazZawartosc() {
     var pokaz = document.getElementById("zawartosczlota");
     pokaz.style.display = "flex";
     pokaz.style.backgroundColor = "silver";
 }
 
+//
 function ukryjZawartosc() {
     var pokaz = document.getElementById("zawartosczlota");
     pokaz.style.display = "none";
+    document.getElementById("gramproba").value = "";
 
 }
 
+//
 function aktualizujUncje () {
-    let uncjaPLN = "";
+    let uncjaPLN;
     uncjaPLN = document.getElementById("cena_gram").value * 31,103;
     uncjaPLN = Math.round(uncjaPLN * 100)/100;
     document.getElementById("cena_uncja").value = uncjaPLN;
     console.log("uncjaPLN " + uncjaPLN);
 }
 
+//
 function aktualizujGramy () {
     let gramPLN = "";
     gramPLN = document.getElementById("cena_uncja").value / 31,103;
@@ -61,21 +68,56 @@ function aktualizujGramy () {
     console.log("gramPLN " + gramPLN);
 }
 
+//
 function cenaZlota() {
     fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
         .then(resp => resp.json())
         .then(json => document.getElementById("cena_gram").value = json[0].cena)
         .catch(err => console.log(err));
-    //    aktualizujUncje();
+    document.getElementById("cena_uncja").value = 0;
+    // :TODO: tu wywołać funkcję przeliczającą cenę z gram/pl na uncja/pln
 }
 
+// Podaj wagę czystego złota w gramach:
+function uncjaGramZlota() {
+let gramz;
+gramz = document.getElementById("uncja").value * 31,103;
+document.getElementById("gramzloto").value = gramz;
+}
+//:TODO: poprawić mnożenie żeby dawało 31.103 a nie 31
 
-function gramzlota() {
-var gramz;
-gramz = document.getElementById("gramzloto").value;
-console.log("złotogram " + gramz);
+//
+function policzCzysteZloto (){
+    let przeliczCzysteZloto;
+    przeliczCzysteZloto = (document.getElementById("proba").value / 1000) * document.getElementById("gramproba").value;
+    przeliczCzysteZloto = Math.round(przeliczCzysteZloto * 100)/100;
+    document.getElementById("gramzloto").value = przeliczCzysteZloto;
+    console.log("przeliczCzysteZloto" + przeliczCzysteZloto);
+    document.getElementById("uncja").value = 0;
 }
 
+//
+function policzWartosc() {
+
+}
+
+document.getElementById("uncja").addEventListener('click', ukryjZawartosc);
+document.getElementById("gramzloto").addEventListener('click', ukryjZawartosc);
+document.getElementById("uncja").addEventListener('change', uncjaGramZlota);
+document.getElementById("gramproba").addEventListener('click', pokazZawartosc );
+document.getElementById("gramproba").addEventListener('change', function(){ jakosc('proba'); }); //tu
+document.getElementById("karat").addEventListener('change', function(){ jakosc('karat'); });
+document.getElementById("gum").addEventListener('change', function(){ jakosc('gum'); });
+document.getElementById("proba").addEventListener('change', function(){ jakosc('proba'); });
+// document.getElementById("proba").addEventListener('change', function(){ jakosc('proba'); policzCzysteZloto(); });
+document.getElementById("wez_nbp").addEventListener('click', cenaZlota);
+document.getElementById("cena_gram").addEventListener('change', aktualizujUncje);
+document.getElementById("cena_gram").addEventListener('click', aktualizujUncje);
+document.getElementById("cena_uncja").addEventListener('change', aktualizujGramy);
+document.getElementById("cena_uncja").addEventListener('click', aktualizujGramy);
+document.getElementById("policz").addEventListener('click', policzWartosc);
+
+/*
 var aa = "";
 fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
     .then(response => response.json())
@@ -84,30 +126,4 @@ fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
     console.log("aa " + aa);
 
 // :TODO: złączyć w jedną funkcję ukryj pokaż i dodać od ręki przeliczanie w niej jak się uda
-
-document.getElementById("uncja").addEventListener('click', ukryjZawartosc);
-document.getElementById("gramzloto").addEventListener('click', function(){
-    ukryjZawartosc();
-    gramzlota();
-  });
-
-document.getElementById("gramproba").addEventListener('click', pokazZawartosc);
-document.getElementById("karat").addEventListener('change', jakosc('karat'));
-document.getElementById("gum").addEventListener('change', jakosc('gum'));
-document.getElementById("proba").addEventListener('change', jakosc('proba'));
-document.getElementById("wez_nbp").addEventListener('click', cenaZlota);
-document.getElementById("cena_gram").addEventListener('change', aktualizujUncje);
-document.getElementById("cena_uncja").addEventListener('change', aktualizujGramy);
-  
-/*
-  id="uncja" onclick="ukryjZawartosc()"
-  id="gramzloto" name="gramzloto" onclick="ukryjZawartosc()" onchange="gramzlota()
-  id="gramproba" name="gramproba" onchange="pokazZawartosc()
-  id="karat" onchange="jakosc('karat')
-  id="gum" onchange="jakosc('gum')
-  id="proba" name="proba" onchange="jakosc('proba')
-  id="cena_uncja" name="cena_uncja" value="8000"
-  id="cena_gram" name="cena_gram" value="240"
-  id="pole_wymik" name="pole_wynik" onclick="cenaZlota()"
-
-*/
+ */

@@ -82,7 +82,7 @@
         <div class="kontener">
             <div>
                 <label for="cena_uncja">Wprowadź cenę za uncję złota:</label><br>
-                <input type="number" min="0.01" step="any" id="cena_uncja" name="cena_uncja"> PLN.
+                <input type="number" min="0" step="any" id="cena_uncja" name="cena_uncja"> PLN.
             </div>
             <div>
                 <label for="cena_gram">Wprowadź cenę za gram złota, <br><small>lub <span class="nbp" id="wez_nbp">pobierz ostatnią z NBP</span></small></label><br>
@@ -91,7 +91,7 @@
         </div>
         <div class="wynik">
             <div id="pole_wynik" name="pole_wynik">
-                <h2>Twoja monetka jest warta: </h2>
+                <h2 id="policz">Policz ile Twoja monetka jest warta: </h2>
                 <h1 id="wartosc"> xxxx z js</h1>
                 <h3 id="brak">ggg</h3>
             </div>
