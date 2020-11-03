@@ -4,7 +4,7 @@ body {
     margin: .5rem;
     padding: 1rem;
     min-width: 370px;
-    background-image: url("img/tlo1.jpg");
+    /* background-image: url("img/tlo1.jpg"); */
 }
 
 .wstep {
@@ -102,4 +102,9 @@ label {
 
 #zawartosczlota {
     display: none;
+}
+
+#policz {
+    text-decoration: underline;
+    color: blue;
 }
