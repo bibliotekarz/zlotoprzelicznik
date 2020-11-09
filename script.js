@@ -5,19 +5,13 @@ function jakosc(zmiana) {
     jakosc_proba = document.getElementById("proba");
     let jakosc_gum;
     jakosc_gum = document.getElementById("gum");
-//    let jakoscproby;
-//    jakoscproby = document.getElementById("proba");
-//    let gramstopu;
-//    gramstopu = document.getElementById("gramproba");
 
     switch (zmiana) {
         case 'karat':
-//            a = jakosc_karaty.value;
             jakosc_proba.value = jakosc_karaty.value;
             jakosc_gum.value = 0;
             break;
         case 'gum':
-//            a = jakosc_gum.value;
             jakosc_proba.value = jakosc_gum.value;
             jakosc_karaty.value = 0;
             break;
@@ -28,7 +22,7 @@ function jakosc(zmiana) {
         default:
             console.log("błąd case");
     }
-    policzCzysteZloto ();
+    policzCzysteZloto();
 }
 
 
@@ -53,32 +47,32 @@ function ukryjZawartosc() {
 }
 
 function czyscUncjeProba() {
-    document.getElementById("uncja").value = 0;    
+    document.getElementById("uncja").value = 0;
     document.getElementById("gramproba").value = "";
 
     ukryjZawartosc();
 }
 
 
-function aktualizujUncje () {
+function aktualizujUncje() {
     let uncjaPLN;
     let cenaGram;
 
     cenaGram = document.getElementById("cena_gram").value;
-    uncjaPLN = cenaGram * 31,103;
-    uncjaPLN = Math.round(uncjaPLN * 100)/100;
+    uncjaPLN = cenaGram * 31.103;
+    uncjaPLN = Math.round(uncjaPLN * 100) / 100;
 
     document.getElementById("cena_uncja").value = uncjaPLN;
 }
 
 
-function aktualizujGramy () {
+function aktualizujGramy() {
     let gramPLN;
     let cenaUncja;
-    
+
     cenaUncja = document.getElementById("cena_uncja").value;
-    gramPLN = cenaUncja / 31,103;
-    gramPLN = Math.round(gramPLN * 100)/100;
+    gramPLN = cenaUncja / 31.103;
+    gramPLN = Math.round(gramPLN * 100) / 100;
 
     document.getElementById("cena_gram").value = gramPLN;
 }
@@ -95,27 +89,27 @@ function cenaZlota() {
 
 
 function uncjaGramZlota() {
-let gramz;
-let uncjaWartosc;
+    let gramz;
+    let uncjaWartosc;
 
-uncjaWartosc = document.getElementById("uncja").value;
-gramz = uncjaWartosc * 31,103;
+    uncjaWartosc = document.getElementById("uncja").value;
+    console.log(typeof(uncjaWartosc));
+    gramz = uncjaWartosc * 31.103;
 
-document.getElementById("gramzloto").value = gramz;
-//:TODO: poprawić mnożenie żeby dawało 31.103 a nie 31
+    document.getElementById("gramzloto").value = gramz;
 }
 
 
-function policzCzysteZloto (){
+function policzCzysteZloto() {
     let przeliczCzysteZloto;
     let przeliczProba;
     let przeliczGramProba;
-    
+
     przeliczProba = document.getElementById("proba").value;
     przeliczGramProba = document.getElementById("gramproba").value;
 
     przeliczCzysteZloto = (przeliczProba / 1000) * przeliczGramProba;
-    przeliczCzysteZloto = Math.round(przeliczCzysteZloto * 100)/100;
+    przeliczCzysteZloto = Math.round(przeliczCzysteZloto * 100) / 100;
 
     document.getElementById("gramzloto").value = przeliczCzysteZloto;
     document.getElementById("uncja").value = 0;
@@ -131,19 +125,22 @@ function policzWartosc() {
     gramyZlota = document.getElementById("gramzloto").value;
 
     wartoscMonetki = gramyZlota * cenaZaGram;
-    wartoscMonetki = Math.round(wartoscMonetki * 100)/100;
+    wartoscMonetki = Math.round(wartoscMonetki * 100) / 100;
 
     document.getElementById("wartosc").innerHTML = wartoscMonetki + " zł";
 }
 
 document.getElementById("uncja").addEventListener('click', ukryjZawartosc);
 document.getElementById("uncja").addEventListener('change', uncjaGramZlota);
-document.getElementById("gramzloto").addEventListener('change', function(){ ukryjZawartosc; czyscUncjeProba(); });
-document.getElementById("gramproba").addEventListener('click', pokazZawartosc );
-document.getElementById("gramproba").addEventListener('change', function(){ jakosc('proba'); }); 
-document.getElementById("karat").addEventListener('change', function(){ jakosc('karat'); });
-document.getElementById("gum").addEventListener('change', function(){ jakosc('gum'); });
-document.getElementById("proba").addEventListener('change', function(){ jakosc('proba'); });
+document.getElementById("gramzloto").addEventListener('change', function() {
+    ukryjZawartosc;
+    czyscUncjeProba();
+});
+document.getElementById("gramproba").addEventListener('click', pokazZawartosc);
+document.getElementById("gramproba").addEventListener('change', function() { jakosc('proba'); });
+document.getElementById("karat").addEventListener('change', function() { jakosc('karat'); });
+document.getElementById("gum").addEventListener('change', function() { jakosc('gum'); });
+document.getElementById("proba").addEventListener('change', function() { jakosc('proba'); });
 document.getElementById("wez_nbp").addEventListener('click', cenaZlota);
 document.getElementById("cena_gram").addEventListener('change', aktualizujUncje);
 document.getElementById("cena_gram").addEventListener('click', aktualizujUncje);
