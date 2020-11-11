@@ -12,10 +12,9 @@ Jeśli przeliczasz żeby sprzedać wprowadź cenę skupu czystego złota, gdy ku
 
 Przeliczniki prób na podstawie [Rozporządzenia Ministra Gospodarki](http://bip.oup.warszawa.gum.gov.pl/download/18/1217/RozpMGwsmetaliszlachetnych.pdf "link do Rozporządzenia Ministra Gospodarki z dnia 31 maja 2012 r.w sprawie wyrobów z metali szlachetnych"), przelicznik karatów na podstawie [Wikipedia: Próba złota](https://pl.wikipedia.org/wiki/Pr%C3%B3ba_z%C5%82ota "link do strony")
 
-Skrypt pobiera ostatnio dostępną średnią cenę złota z oficjalnego API udostępnionego przez [NBP Web API](http://api.nbp.pl/ "link do NBP Web API") 
+Skrypt pobiera ostatnio dostępną średnią cenę złota z oficjalnego API udostępnionego przez [NBP Web API](http://api.nbp.pl/ "link do NBP Web API"). NBP nie aktualizuje ceny w dni wolne od pracy.
 
-**UWAGA:** NBP nie aktualizuje ceny w dni wolne od pracy. 
-
+**UWAGA:**  GitHub Pages blokują korzystanie z API NBP, tak więc pod adresem https://bibliotekarz.github.io/zlotoprzelicznik pobieranie średniej ceny złota z NBP nie działa :( Cenę możesz zobaczyć klikając [w ten link](http://api.nbp.pl/api/cenyzlota/?format=json "Ostatnia cena złota podana przez NBP") i wprowadzić na stronie przelicznika.
 &nbsp;
 
 Podawane dane są przetwarzane wyłącznie po stronie przeglądarki użytkownika.
