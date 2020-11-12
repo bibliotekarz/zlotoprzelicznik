@@ -79,7 +79,7 @@ function aktualizujGramy() {
 
 
 function cenaZlota() {
-    fetch("http://api.nbp.pl/api/cenyzlota/?format=json")
+    fetch("https://api.nbp.pl/api/cenyzlota/?format=json")
         .then(resp => resp.json())
         .then(json => document.getElementById("cena_gram").value = json[0].cena)
         .catch(err => console.log(err));
